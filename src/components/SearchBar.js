@@ -9,12 +9,14 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import { yellow, common } from '@mui/material/colors';
 
-function SearchBar({placeholder, data}){
+function SearchBar({data}){
     let radioSubmitResult = '';
 
     const [filteredData, setFilteredData] = useState([]);
     const [searchStateFlag, setSearchStateFlag] = useState(false);
     const [wordEntered, setWordEntered] = useState('');
+    const [inputErrorState, setInputErrorState] = useState(false);
+    const [radioErrorState, setRadioErrorState] = useState('noChecked');
 
     const radioProp = {
         color: common['white'],
@@ -30,6 +32,10 @@ function SearchBar({placeholder, data}){
         return input;
     };
     const handleFilter = (event) => {
+        if (radioErrorState !== 'checked'){
+            setRadioErrorState('noChecked');
+        }
+        setInputErrorState(false);
         const searchWord = noSpaceOnStartFilter(event.target.value);
         setWordEntered(searchWord);
         const newFilter = data.filter((value)=>{
@@ -64,32 +70,42 @@ function SearchBar({placeholder, data}){
                 return value.toLowerCase() === searchWord.toLowerCase().replaceAll(' ', '');
             });
             if (filter.length !== 0){
+                setWordEntered('');
+                if (radioErrorState === 'noChecked'){
+                    setRadioErrorState('yes');
+                    console.log('Nice, but no Radio!');
+                    return;
+                }
                 console.log('Done!');
                 console.log(filter);
             }else{
+                setInputErrorState(true);
+                setWordEntered('');
+                if (radioErrorState === 'noChecked'){
+                    setRadioErrorState('yes');
+                }
                 console.log('Nope :(');
                 console.log(filter);
             }
-            console.log('Hello World!');
         }
     };
     const handleRadio = (event)=> {
+        setRadioErrorState('checked');
         radioSubmitResult = event.target.value;
         console.log(radioSubmitResult);
     };
 
     return (
         <div className='search'>
-            <div className='alertBox'><span style={{color: '#ff495f'}}>Select a time period:</span><span style={{color: '#33495f', display: 'none'}}>No data for this city :(</span></div>
             <FormControl id='radioSet' component='fieldset'>
                 <RadioGroup row aria-label='weather' name='row-radio-buttons-group'>
-                    <FormControlLabel id='nowRadioButton' value='Now' control={<Radio sx={radioProp} onChange={handleRadio}/>} label='Now' />
-                    <FormControlLabel id='2daysRadioButton' value='Next 2 days' control={<Radio sx={radioProp} onChange={handleRadio}/>} label='Next 2 days' />
-                    <FormControlLabel id='weekRadioButton' value='This week' control={<Radio sx={radioProp} onChange={handleRadio}/>} label='This week' />
+                    <FormControlLabel id={radioErrorState === 'yes' ? 'nowRadioButtonError': 'nowRadioButton'} value='Now' control={<Radio sx={radioProp} onChange={handleRadio}/>} label='Now' />
+                    <FormControlLabel id={radioErrorState === 'yes' ? 'twoDaysRadioButtonError': 'twoDaysRadioButton'} value='Next 2 days' control={<Radio sx={radioProp} onChange={handleRadio}/>} label='Next 2 days' />
+                    <FormControlLabel id={radioErrorState === 'yes' ? 'weekRadioButtonError': 'weekRadioButton'} value='This week' control={<Radio sx={radioProp} onChange={handleRadio}/>} label='This week' />
                 </RadioGroup>
             </FormControl>
             <div className='searchInputSet'>
-                <input className='searchInput' type='text' placeholder={placeholder} value={wordEntered} onChange={handleFilter} onKeyUp={handleSubmit}/>
+                <input className={inputErrorState ? 'searchInputError': 'searchInput'} type='text' placeholder='City...' value={wordEntered} onChange={handleFilter} onKeyUp={handleSubmit}/>
                 <div className='searchIcon'>{searchStateFlag ? <Close id='clearBtn' onClick={clearInput}/> : <Search id='searchBtn'/>}</div>
             </div>
             {filteredData.length !== 0 && (
@@ -104,7 +120,6 @@ function SearchBar({placeholder, data}){
 }
 
 SearchBar.propTypes = {
-    placeholder: PropTypes.string,
     data: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 };
 

@@ -10,7 +10,7 @@ function App() {
     return (
         <React.Fragment>
             <Animation/>
-            <SearchBar placeholder='City...' data={ListOfCities}/>
+            <SearchBar data={ListOfCities} />
         </React.Fragment>
     );
 }

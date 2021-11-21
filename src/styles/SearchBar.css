@@ -29,6 +29,27 @@
 .searchInput::-ms-input-placeholder{
   color: #33495f;
 }
+.search .searchInputError{
+  background-color: white;
+  border: 0;
+  font-family: 'Poppins', 'Ubuntu', 'Roboto', sans-serif;
+  font-style: normal;
+  font-size: 2rem;
+  color: #33495f;
+  padding: 0.9375rem;
+  height: 1.875rem;
+  width: 18.75rem;
+}
+.searchInputError::placeholder{
+  color: #ff495f;
+  opacity: 0.8;
+}
+.searchInputError:-ms-input-placeholder{
+  color: #ff495f;
+}
+.searchInputError::-ms-input-placeholder{
+  color: #ff495f;
+}
 input:focus{
   outline: none;
 }
@@ -79,12 +100,6 @@ a:hover{
 #weekRadioButton{
   margin-right: 0.5625rem;
 }
-.alertBox{
-  width: 20.695625rem;
-  margin: auto;
-  font-size: 1.5rem;
-  text-align: center;
-  font-weight: bold;
+#weekRadioButtonError, #nowRadioButtonError, #twoDaysRadioButtonError{
   color: #ff495f;
-  vertical-align: bottom;
 }
