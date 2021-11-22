@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import '@styles/SearchBar.css';
 import PropTypes from 'prop-types';
-import Search from '@mui/icons-material/search';
-import Close from '@mui/icons-material/close';
+import Search from '@mui/icons-material/Search';
+import Close from '@mui/icons-material/Close';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
