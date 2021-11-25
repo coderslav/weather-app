@@ -10,16 +10,14 @@ import FormControl from '@mui/material/FormControl';
 import { yellow, common } from '@mui/material/colors';
 
 function SearchBar({ data }) {
-    let resultData = {
-        city: '',
-        time: '',
-    };
 
     const [filteredData, setFilteredData] = useState([]);
     const [searchStateFlag, setSearchStateFlag] = useState(false);
     const [wordEntered, setWordEntered] = useState('');
     const [inputErrorState, setInputErrorState] = useState(false);
     const [radioErrorState, setRadioErrorState] = useState('noChecked');
+    const [resultDataCity, setResultDataCity] = useState('');
+    const [resultDataTime, setResultDataTime] = useState('');
 
     const radioProp = {
         color: common['white'],
@@ -44,6 +42,9 @@ function SearchBar({ data }) {
         const newFilter = data.filter((value) => {
             return value.toLowerCase().includes(searchWord.toLowerCase());
         });
+        newFilter.sort((a, b) => {
+            return a.length - b.length;
+        });
         if (searchWord === '') {
             setSearchStateFlag(false);
             setFilteredData([]);
@@ -53,11 +54,7 @@ function SearchBar({ data }) {
                 return value.toLowerCase() === searchWord.toLowerCase().replaceAll(' ', '');
             });
             if (matchList.length !== 0) {
-                // TODO
-                matchList.forEach((elem) => {
-                    newFilter.unshift(elem);
-                });
-                setFilteredData(newFilter);
+                setFilteredData([]);
             } else {
                 setFilteredData(newFilter);
             }
@@ -83,14 +80,14 @@ function SearchBar({ data }) {
                 return value.toLowerCase() === searchWord.toLowerCase().replaceAll(' ', '');
             });
             if (filter.length !== 0) {
-                setWordEntered('');
                 if (radioErrorState === 'noChecked') {
                     setRadioErrorState('yes');
                     console.log('Nice, but no Radio!');
                     return;
                 }
+                setWordEntered('');
                 console.log('Done!');
-                console.log(filter);
+                setResultDataCity(filter[0]);
             } else {
                 setInputErrorState(true);
                 setWordEntered('');
@@ -104,12 +101,13 @@ function SearchBar({ data }) {
     };
     const handleRadio = (event) => {
         setRadioErrorState('checked');
-        resultData.time = event.target.value;
-        console.log(resultData);
+        setResultDataTime(event.target.value);
     };
 
     return (
         <div className='search'>
+            <div>{resultDataCity}</div>
+            <div>{resultDataTime}</div>
             <FormControl id='radioSet' component='fieldset'>
                 <RadioGroup row aria-label='weather' name='row-radio-buttons-group'>
                     <FormControlLabel id={radioErrorState === 'yes' ? 'nowRadioButtonError' : 'nowRadioButton'} value='Now' control={<Radio sx={radioProp} onChange={handleRadio} />} label='Now' />
