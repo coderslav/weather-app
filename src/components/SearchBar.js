@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from 'react';
 import '@styles/SearchBar.css';
 import PropTypes from 'prop-types';
 import Search from '@mui/icons-material/Search';
@@ -9,8 +9,11 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import { yellow, common } from '@mui/material/colors';
 
-function SearchBar({data}){
-    let radioSubmitResult = '';
+function SearchBar({ data }) {
+    let resultData = {
+        city: '',
+        time: '',
+    };
 
     const [filteredData, setFilteredData] = useState([]);
     const [searchStateFlag, setSearchStateFlag] = useState(false);
@@ -26,35 +29,38 @@ function SearchBar({data}){
     };
 
     const noSpaceOnStartFilter = (input) => {
-        if (/^\s/.test(input)){
+        if (/^\s/.test(input)) {
             return '';
         }
         return input;
     };
     const handleFilter = (event) => {
-        if (radioErrorState !== 'checked'){
+        if (radioErrorState !== 'checked') {
             setRadioErrorState('noChecked');
         }
         setInputErrorState(false);
         const searchWord = noSpaceOnStartFilter(event.target.value);
         setWordEntered(searchWord);
-        const newFilter = data.filter((value)=>{
+        const newFilter = data.filter((value) => {
             return value.toLowerCase().includes(searchWord.toLowerCase());
         });
-        if (searchWord === ''){
+        if (searchWord === '') {
             setSearchStateFlag(false);
             setFilteredData([]);
-        }else{
+        } else {
             setSearchStateFlag(true);
             const matchList = newFilter.filter((value) => {
                 return value.toLowerCase() === searchWord.toLowerCase().replaceAll(' ', '');
             });
-            if (matchList.length !== 0){
-                setFilteredData(matchList);
-            }else{
+            if (matchList.length !== 0) {
+                // TODO
+                matchList.forEach((elem) => {
+                    newFilter.unshift(elem);
+                });
+                setFilteredData(newFilter);
+            } else {
                 setFilteredData(newFilter);
             }
-
         }
     };
     const clearInput = () => {
@@ -62,26 +68,33 @@ function SearchBar({data}){
         setWordEntered('');
         setSearchStateFlag(false);
     };
+
+    const handleDataResultChoice = (event) => {
+        event.preventDefault();
+        setWordEntered(event.target.textContent);
+        setFilteredData([]);
+    };
+
     const handleSubmit = (event) => {
-        if (event.keyCode === 13 || event.type === 'click') {
+        if (event.keyCode === 13) {
             event.preventDefault();
-            const searchWord = event.keyCode === 13 ? event.target.value: event.target.textContent;
-            const filter = data.filter((value)=>{
+            const searchWord = event.target.value;
+            const filter = data.filter((value) => {
                 return value.toLowerCase() === searchWord.toLowerCase().replaceAll(' ', '');
             });
-            if (filter.length !== 0){
+            if (filter.length !== 0) {
                 setWordEntered('');
-                if (radioErrorState === 'noChecked'){
+                if (radioErrorState === 'noChecked') {
                     setRadioErrorState('yes');
                     console.log('Nice, but no Radio!');
                     return;
                 }
                 console.log('Done!');
                 console.log(filter);
-            }else{
+            } else {
                 setInputErrorState(true);
                 setWordEntered('');
-                if (radioErrorState === 'noChecked'){
+                if (radioErrorState === 'noChecked') {
                     setRadioErrorState('yes');
                 }
                 console.log('Nope :(');
@@ -89,29 +102,33 @@ function SearchBar({data}){
             }
         }
     };
-    const handleRadio = (event)=> {
+    const handleRadio = (event) => {
         setRadioErrorState('checked');
-        radioSubmitResult = event.target.value;
-        console.log(radioSubmitResult);
+        resultData.time = event.target.value;
+        console.log(resultData);
     };
 
     return (
         <div className='search'>
             <FormControl id='radioSet' component='fieldset'>
                 <RadioGroup row aria-label='weather' name='row-radio-buttons-group'>
-                    <FormControlLabel id={radioErrorState === 'yes' ? 'nowRadioButtonError': 'nowRadioButton'} value='Now' control={<Radio sx={radioProp} onChange={handleRadio}/>} label='Now' />
-                    <FormControlLabel id={radioErrorState === 'yes' ? 'twoDaysRadioButtonError': 'twoDaysRadioButton'} value='Next 2 days' control={<Radio sx={radioProp} onChange={handleRadio}/>} label='Next 2 days' />
-                    <FormControlLabel id={radioErrorState === 'yes' ? 'weekRadioButtonError': 'weekRadioButton'} value='This week' control={<Radio sx={radioProp} onChange={handleRadio}/>} label='This week' />
+                    <FormControlLabel id={radioErrorState === 'yes' ? 'nowRadioButtonError' : 'nowRadioButton'} value='Now' control={<Radio sx={radioProp} onChange={handleRadio} />} label='Now' />
+                    <FormControlLabel id={radioErrorState === 'yes' ? 'twoDaysRadioButtonError' : 'twoDaysRadioButton'} value='Next 2 days' control={<Radio sx={radioProp} onChange={handleRadio} />} label='Next 2 days' />
+                    <FormControlLabel id={radioErrorState === 'yes' ? 'weekRadioButtonError' : 'weekRadioButton'} value='This week' control={<Radio sx={radioProp} onChange={handleRadio} />} label='This week' />
                 </RadioGroup>
             </FormControl>
             <div className='searchInputSet'>
-                <input className={inputErrorState ? 'searchInputError': 'searchInput'} type='text' placeholder='City...' value={wordEntered} onChange={handleFilter} onKeyUp={handleSubmit}/>
-                <div className='searchIcon'>{searchStateFlag ? <Close id='clearBtn' onClick={clearInput}/> : <Search id='searchBtn'/>}</div>
+                <input className={inputErrorState ? 'searchInputError' : 'searchInput'} type='text' placeholder='City...' value={wordEntered} onChange={handleFilter} onKeyUp={handleSubmit} />
+                <div className='searchIcon'>{searchStateFlag ? <Close id='clearBtn' onClick={clearInput} /> : <Search id='searchBtn' />}</div>
             </div>
             {filteredData.length !== 0 && (
                 <div className='dataResult'>
-                    {filteredData.slice(0, 15).map((value, key)=>{
-                        return <a className='dataItem' href={value} key={key} onClick={handleSubmit} target='_blank' rel='noreferrer'>{value}</a>;
+                    {filteredData.slice(0, 15).map((value, key) => {
+                        return (
+                            <a className='dataItem' href={value} key={key} onClick={handleDataResultChoice} target='_blank' rel='noreferrer'>
+                                {value}
+                            </a>
+                        );
                     })}
                 </div>
             )}
@@ -120,7 +137,7 @@ function SearchBar({data}){
 }
 
 SearchBar.propTypes = {
-    data: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
+    data: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
 
 export default SearchBar;
