@@ -100,7 +100,10 @@ a:hover {
 #weekRadioButton {
     margin-right: 0.5625rem;
 }
-#weekRadioButtonError,
+#weekRadioButtonError {
+    margin-right: 0.5625rem;
+    color: #ff495f;
+}
 #nowRadioButtonError,
 #twoDaysRadioButtonError {
     color: #ff495f;

@@ -9,8 +9,20 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import { yellow, common } from '@mui/material/colors';
 
-function SearchBar({ data }) {
+const radioProp = {
+    color: common['white'],
+    '&.Mui-checked': {
+        color: yellow[600],
+    },
+};
+const noSpaceOnStartFilter = (input) => {
+    if (/^\s/.test(input)) {
+        return '';
+    }
+    return input;
+};
 
+function SearchBar({ data, sendToApp }) {
     const [filteredData, setFilteredData] = useState([]);
     const [searchStateFlag, setSearchStateFlag] = useState(false);
     const [wordEntered, setWordEntered] = useState('');
@@ -19,19 +31,10 @@ function SearchBar({ data }) {
     const [resultDataCity, setResultDataCity] = useState('');
     const [resultDataTime, setResultDataTime] = useState('');
 
-    const radioProp = {
-        color: common['white'],
-        '&.Mui-checked': {
-            color: yellow[600],
-        },
-    };
+    if (resultDataCity && resultDataTime) {
+        sendToApp(resultDataCity, resultDataTime);
+    }
 
-    const noSpaceOnStartFilter = (input) => {
-        if (/^\s/.test(input)) {
-            return '';
-        }
-        return input;
-    };
     const handleFilter = (event) => {
         if (radioErrorState !== 'checked') {
             setRadioErrorState('noChecked');
@@ -106,8 +109,6 @@ function SearchBar({ data }) {
 
     return (
         <div className='search'>
-            <div>{resultDataCity}</div>
-            <div>{resultDataTime}</div>
             <FormControl id='radioSet' component='fieldset'>
                 <RadioGroup row aria-label='weather' name='row-radio-buttons-group'>
                     <FormControlLabel id={radioErrorState === 'yes' ? 'nowRadioButtonError' : 'nowRadioButton'} value='Now' control={<Radio sx={radioProp} onChange={handleRadio} />} label='Now' />
@@ -136,6 +137,7 @@ function SearchBar({ data }) {
 
 SearchBar.propTypes = {
     data: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    sendToApp: PropTypes.func,
 };
 
 export default SearchBar;
