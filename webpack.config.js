@@ -14,6 +14,7 @@ let config = {
     },
     resolve: {
         alias: {
+            '@root': path.resolve(),
             '@src': path.resolve('src'),
             '@js': path.resolve('src/js'),
             '@components': path.resolve('src/components'),
