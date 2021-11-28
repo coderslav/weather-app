@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
 import Animation from '@components/Animation';
-import ResultPage from '@components/ResultPage';
-import '@styles/SearchBar.css';
+import Result from '@components/Result';
+import '@styles/Search.css';
 import PropTypes from 'prop-types';
-import Search from '@mui/icons-material/Search';
-import Close from '@mui/icons-material/Close';
+import SearchIcon from '@mui/icons-material/Search';
+import CloseIcon from '@mui/icons-material/Close';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import { yellow, common } from '@mui/material/colors';
 import axios from 'axios';
+
+Search.propTypes = {
+    data: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    APIkey: PropTypes.string
+};
 
 const radioProp = {
     color: common['white'],
@@ -25,7 +30,7 @@ const noSpaceOnStartFilter = (input) => {
     return input;
 };
 
-function SearchBar({ data, APIkey }) {
+function Search({ data, APIkey }) {
     const [filteredData, setFilteredData] = useState([]);
     const [searchStateFlag, setSearchStateFlag] = useState(false);
     const [wordEntered, setWordEntered] = useState('');
@@ -33,6 +38,7 @@ function SearchBar({ data, APIkey }) {
     const [radioErrorState, setRadioErrorState] = useState('noChecked');
     const [resultDataTime, setResultDataTime] = useState(null);
     const [resultData, setResultData] = useState(null);
+    const [resultCityInfo, setResultCityInfo] = useState(null);
 
     const handleFilter = (event) => {
         if (radioErrorState !== 'checked') {
@@ -52,10 +58,12 @@ function SearchBar({ data, APIkey }) {
             setFilteredData([]);
         } else {
             setSearchStateFlag(true);
-            const matchList = newFilter.filter((value) => {
-                return value.toLowerCase() === searchWord.toLowerCase().replaceAll(' ', '');
+            const match = newFilter.filter((value) => {
+                return value.toLowerCase().replaceAll(' ', '') === searchWord.toLowerCase().replaceAll(' ', '');
             });
-            if (matchList.length !== 0) {
+            if (match.length !== 0) {
+
+                console.log(match);
                 setFilteredData([]);
             } else {
                 setFilteredData(newFilter);
@@ -79,7 +87,7 @@ function SearchBar({ data, APIkey }) {
             event.preventDefault();
             const searchWord = event.target.value;
             const filter = data.filter((value) => {
-                return value.toLowerCase() === searchWord.toLowerCase().replaceAll(' ', '');
+                return value.toLowerCase().replaceAll(' ', '') === searchWord.toLowerCase().replaceAll(' ', '');
             });
             if (filter.length !== 0) {
                 if (radioErrorState === 'noChecked') {
@@ -91,6 +99,7 @@ function SearchBar({ data, APIkey }) {
                 console.log('Done!');
                 axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${filter[0]}&limit=1&appid=${APIkey}`)
                     .then(response => {
+                        setResultCityInfo({city: response.data[0].name, country: response.data[0].country});
                         if (resultDataTime === 'Now'){
                             axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${response.data[0].lat}&lon=${response.data[0].lon}&exclude=minutely,hourly,daily&units=metric&appid=${APIkey}`)
                                 .then(response => setResultData(response.data)).catch(error => alert(error));
@@ -132,7 +141,7 @@ function SearchBar({ data, APIkey }) {
                 </FormControl>
                 <div className='searchInputSet'>
                     <input className={inputErrorState ? 'searchInputError' : 'searchInput'} type='text' placeholder='City...' value={wordEntered} onChange={handleFilter} onKeyUp={handleSubmit} />
-                    <div className='searchIcon'>{searchStateFlag ? <Close id='clearBtn' onClick={clearInput} /> : <Search id='searchBtn' />}</div>
+                    <div className='searchIcon'>{searchStateFlag ? <CloseIcon id='clearBtn' onClick={clearInput} /> : <SearchIcon id='searchBtn' />}</div>
                 </div>
                 {filteredData.length !== 0 && (
                     <div className='dataResult'>
@@ -148,12 +157,9 @@ function SearchBar({ data, APIkey }) {
             </div>
         </>);
 
-    return resultData ? <ResultPage resultData={resultData} /> : searchBlock;
+    return <Result resultData={resultData} resultCityInfo={resultCityInfo} />;
+    // TODO не забыть! И правила в ESlint (no-unused-vars)!
+    // return resultData ? <Result resultData={resultData} /> : searchBlock;
 }
 
-SearchBar.propTypes = {
-    data: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-    APIkey: PropTypes.string
-};
-
-export default SearchBar;
+export default Search;

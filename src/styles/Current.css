@@ -1,0 +1,39 @@
+.current-weather-wrap{
+    display: grid;
+    position: relative;
+    top: calc(50% - 240px);
+    width: max-content;
+    margin: 0 auto;
+    background-color: white;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: repeat(6, minmax(5rem, auto));
+
+}
+.grid-item{
+    padding: 10px;
+    border: 1px solid black;
+}
+
+
+.grid-item.main{
+    grid-row: 1/7;
+}
+.city-info{
+    font-size: 3rem;
+}
+.date-time{
+    font-size: 1.5rem;
+}
+.weather-picture{
+    height: 2rem;
+}
+.temperature{
+    font-size: 1rem;
+}
+.temperature-feeling{
+    font-size: 0.5rem;
+}
+
+.right-side{
+    font-size: 1.5rem;
+}

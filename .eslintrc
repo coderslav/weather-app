@@ -10,7 +10,9 @@
   },
   "rules": {
     "semi": "warn",
-    "jsx-quotes": ["warn", "prefer-single"]
+    "jsx-quotes": ["warn", "prefer-single"],
+//    TODO не забыть включить!
+    "no-unused-vars": "off"
   },
   "env": {
     "es6": true,
