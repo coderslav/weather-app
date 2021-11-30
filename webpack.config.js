@@ -19,6 +19,8 @@ let config = {
             '@js': path.resolve('src/js'),
             '@components': path.resolve('src/components'),
             '@styles': path.resolve('src/styles'),
+            '@fonts': path.resolve('src/fonts'),
+            '@images': path.resolve('src/images')
         }
     },
     optimization: {

@@ -4,36 +4,52 @@
     top: calc(50% - 240px);
     width: max-content;
     margin: 0 auto;
-    background-color: white;
+    background-color: #33495f;
     grid-template-columns: 2fr 1fr;
     grid-template-rows: repeat(6, minmax(5rem, auto));
+    grid-gap: 1rem;
+    align-items: center;
 
 }
 .grid-item{
     padding: 10px;
-    border: 1px solid black;
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.75);
+    color: #33495f;
 }
-
 
 .grid-item.main{
     grid-row: 1/7;
+    text-align: center;
 }
 .city-info{
     font-size: 3rem;
+    font-weight: bold;
 }
-.date-time{
+.time{
     font-size: 1.5rem;
 }
-.weather-picture{
-    height: 2rem;
+.wi-day-sunny{
+    font-size: 12rem;
+    margin: 4rem 0;
 }
 .temperature{
-    font-size: 1rem;
+    font-size: 3rem;
 }
 .temperature-feeling{
-    font-size: 0.5rem;
+    font-size: 1rem;
 }
-
-.right-side{
+span{
     font-size: 1.5rem;
+}
+.right-side{
+    font-size: 2rem;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+#visibility{
+    font-size: 2rem;
+    vertical-align: middle;
 }
