@@ -16,16 +16,16 @@ function Current({resultData, resultCityInfo}) {
                 <div className='grid-item main'>
                     <div className='city-info'>Odessa, UA</div>
                     <div className='time'>16:33</div>
-                    <i className='wi wi-day-sunny'/>
-                    <div className='temperature'>33<i className='wi wi-degrees'/></div>
-                    <div className='temperature-feeling'>Feeling like 36<i className='wi wi-degrees'/></div>
+                    <i className='wi wi-day-sunny current'/>
+                    <div className='temperature'>33<i className='wi wi-degrees current'/></div>
+                    <div className='temperature-feeling'>Feeling like 36<i className='wi wi-degrees current'/></div>
                 </div>
-                <div className='grid-item right-side sunrise'><i className='wi wi-sunrise'/> 05:00</div>
-                <div className='grid-item right-side sunset'><i className='wi wi-sunset'/> 18:00</div>
-                <div className='grid-item right-side humidity'>83 <i className='wi wi-humidity'/></div>
-                <div className='grid-item right-side wind'><i className='wi wi-strong-wind'/> 2.1 m/s <i className='wi wi-wind towards-336-deg'/></div>
-                <div className='grid-item right-side pressure'><i className='wi wi-barometer'/> 1008 hPa</div>
-                <div className='grid-item right-side visibility'><VisibilityRounded id='visibility'/> 1000 m</div>
+                <div className='grid-item right-side sunrise'><i className='wi wi-sunrise current'/> 05:00</div>
+                <div className='grid-item right-side sunset'><i className='wi wi-sunset current'/> 18:00</div>
+                <div className='grid-item right-side humidity'>c</div>
+                <div className='grid-item right-side wind'><i className='wi wi-strong-wind current'/> 2.1 m/s <i className='wi wi-wind towards-336-deg current'/></div>
+                <div className='grid-item right-side pressure'><i className='wi wi-barometer current'/> 1008 hPa</div>
+                <div className='grid-item right-side visibility'><VisibilityRounded id='visibilityCurrent'/> 1000 m</div>
             </div>
     );
 }

@@ -135,7 +135,7 @@ function Search({ data, APIkey }) {
                 <FormControl id='radioSet' component='fieldset'>
                     <RadioGroup row aria-label='weather' name='row-radio-buttons-group'>
                         <FormControlLabel id={radioErrorState === 'yes' ? 'nowRadioButtonError' : 'nowRadioButton'} value='Now' control={<Radio sx={radioProp} onChange={handleRadio} />} label='Now' />
-                        <FormControlLabel id={radioErrorState === 'yes' ? 'twoDaysRadioButtonError' : 'twoDaysRadioButton'} value='Next 2 days' control={<Radio sx={radioProp} onChange={handleRadio} />} label='Next 2 days' />
+                        <FormControlLabel id={radioErrorState === 'yes' ? 'twoDaysRadioButtonError' : 'twoDaysRadioButton'} value='For 2 days' control={<Radio sx={radioProp} onChange={handleRadio} />} label='Next 2 days' />
                         <FormControlLabel id={radioErrorState === 'yes' ? 'weekRadioButtonError' : 'weekRadioButton'} value='This week' control={<Radio sx={radioProp} onChange={handleRadio} />} label='This week' />
                     </RadioGroup>
                 </FormControl>

@@ -2,6 +2,13 @@ import React from 'react';
 import '@styles/Result.css';
 import PropTypes from 'prop-types';
 import Current from '@components/Current';
+import Hourly from '@components/Hourly';
+import Daily from '@components/Daily';
+
+Result.propTypes = {
+    resultData: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    resultCityInfo: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
+};
 
 // function timeConvert(unix_timestamp, timezone){
 //     console.log(unix_timestamp);
@@ -21,12 +28,9 @@ function Result({ resultData, resultCityInfo }){
 
 
     // TODO не забыть вернуть продакшен проверку условия, функцию конвертации времени (закоментчено в шапке), компоненты для погоды на 2 дня и погоды на неделю
-    return <Current resultData={resultData} resultCityInfo={resultCityInfo} />;
+    return <Daily resultData={resultData} resultCityInfo={resultCityInfo} />;
 }
 
-Result.propTypes = {
-    resultData: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-    resultCityInfo: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
-};
+
 
 export default Result;

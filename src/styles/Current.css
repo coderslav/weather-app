@@ -1,7 +1,7 @@
 .current-weather-wrap{
     display: grid;
     position: relative;
-    top: calc(50% - 240px);
+    top: calc(50% - 15rem);
     width: max-content;
     margin: 0 auto;
     background-color: #33495f;
@@ -30,7 +30,7 @@
 .time{
     font-size: 1.5rem;
 }
-.wi-day-sunny{
+.wi-day-sunny.current{
     font-size: 12rem;
     margin: 4rem 0;
 }

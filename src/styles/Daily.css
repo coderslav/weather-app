@@ -1,0 +1,45 @@
+.daily-wrap{
+    display: flex;
+    position: relative;
+    top: calc(50% - 14.6875rem);
+    width: max-content;
+    margin: 0 auto;
+    background-color: #33495f;
+    align-content: center;
+    text-align: center;
+    gap: 1rem;
+}
+.daily-flex-item{
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.75);
+    color: #33495f;
+}
+.wi-sunrise.daily, .wi-sunset.daily{
+    margin: 0 0.5rem;
+    font-size: 1rem;
+}
+.daily-section{
+    font-size: 1.5rem;
+    word-break: break-all;
+}
+.wi.wi-day-sunny.daily{
+    font-size: 5rem;
+    margin: 2rem 0;
+}
+.daily-section.feels-like-daily{
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+.daily-section.daily-section-after-temperature{
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+}
+.wi.wi-wind.daily{
+    font-size: 1.5rem;
+}
+#visibilityDaily{
+    font-size: 1.5rem;
+    vertical-align: middle;
+}
