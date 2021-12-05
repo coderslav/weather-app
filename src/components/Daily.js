@@ -5,10 +5,12 @@ import {VisibilityRounded} from '@mui/icons-material';
 
 Daily.propTypes = {
     resultData: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-    resultCityInfo: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
+    resultCityInfo: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    timeConvert: PropTypes.func,
+    weatherIconHandler: PropTypes.func
 };
 
-function Daily({resultData, resultCityInfo}) {
+function Daily({resultData, resultCityInfo, timeConvert, weatherIconHandler}) {
     return (
         <div className='daily-wrap'>
             <div className='daily-flex-item'>

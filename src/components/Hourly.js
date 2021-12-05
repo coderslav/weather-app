@@ -7,10 +7,12 @@ import {VisibilityRounded} from '@mui/icons-material';
 
 Hourly.propTypes = {
     resultData: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-    resultCityInfo: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
+    resultCityInfo: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    timeConvert: PropTypes.func,
+    weatherIconHandler: PropTypes.func
 };
 
-function Hourly({ resultData, resultCityInfo }) {
+function Hourly({ resultData, resultCityInfo, timeConvert, weatherIconHandler }) {
     return (
         <div className='hourly-weather-wrap'>
             <div className='hourly-weather-wrap-day-one'>

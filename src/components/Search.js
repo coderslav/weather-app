@@ -103,7 +103,7 @@ function Search({ data, APIkey }) {
                         if (resultDataTime === 'Now'){
                             axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${response.data[0].lat}&lon=${response.data[0].lon}&exclude=minutely,hourly,daily&units=metric&appid=${APIkey}`)
                                 .then(response => setResultData(response.data)).catch(error => alert(error));
-                        }else if(resultDataTime === 'Next 2 days'){
+                        }else if(resultDataTime === 'For 2 days'){
                             axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${response.data[0].lat}&lon=${response.data[0].lon}&exclude=minutely,current,daily&units=metric&appid=${APIkey}`)
                                 .then(response => setResultData(response.data)).catch(error => alert(error));
                         }else {
@@ -135,7 +135,7 @@ function Search({ data, APIkey }) {
                 <FormControl id='radioSet' component='fieldset'>
                     <RadioGroup row aria-label='weather' name='row-radio-buttons-group'>
                         <FormControlLabel id={radioErrorState === 'yes' ? 'nowRadioButtonError' : 'nowRadioButton'} value='Now' control={<Radio sx={radioProp} onChange={handleRadio} />} label='Now' />
-                        <FormControlLabel id={radioErrorState === 'yes' ? 'twoDaysRadioButtonError' : 'twoDaysRadioButton'} value='For 2 days' control={<Radio sx={radioProp} onChange={handleRadio} />} label='Next 2 days' />
+                        <FormControlLabel id={radioErrorState === 'yes' ? 'twoDaysRadioButtonError' : 'twoDaysRadioButton'} value='For 2 days' control={<Radio sx={radioProp} onChange={handleRadio} />} label='For 2 days' />
                         <FormControlLabel id={radioErrorState === 'yes' ? 'weekRadioButtonError' : 'weekRadioButton'} value='This week' control={<Radio sx={radioProp} onChange={handleRadio} />} label='This week' />
                     </RadioGroup>
                 </FormControl>
@@ -157,9 +157,7 @@ function Search({ data, APIkey }) {
             </div>
         </>);
 
-    return <Result resultData={resultData} resultCityInfo={resultCityInfo} />;
-    // TODO не забыть! И правила в ESlint (no-unused-vars)!
-    // return resultData ? <Result resultData={resultData} /> : searchBlock;
+    return resultData ? <Result resultData={resultData} resultCityInfo={resultCityInfo}/> : searchBlock;
 }
 
 export default Search;

@@ -30,7 +30,7 @@
 .time{
     font-size: 1.5rem;
 }
-.wi-day-sunny.current{
+.weather-icon.current{
     font-size: 12rem;
     margin: 4rem 0;
 }
