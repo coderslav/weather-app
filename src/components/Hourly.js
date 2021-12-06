@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import '@styles/Hourly.css';
 import '@styles/weather-icons.css';
 import '@styles/weather-icons-wind.css';
-import {VisibilityRounded} from '@mui/icons-material';
 
 Hourly.propTypes = {
     resultData: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
@@ -15,90 +14,67 @@ Hourly.propTypes = {
 function Hourly({ resultData, resultCityInfo, timeConvert, weatherIconHandler }) {
     return (
         <div className='hourly-weather-wrap'>
+            <div className='hourly-grid-item city-country-name'>{resultCityInfo.city}, {resultCityInfo.country}</div>
             <div className='hourly-weather-wrap-day-one'>
-                <div className='hourly-grid-item day-grid'>20 ноября</div>
-                <div className='hourly-grid-item'>
-                    <div className='time-of-day-section time-of-day'>Ночь</div>
-                    <div className='time-of-day-section picture-time-of-day'><i className='wi wi-day-sunny hourly'/></div>
-                    <div className='time-of-day-section temperature-time-of-day'>33<i className='wi wi-degrees hourly'/></div>
-                    <div className='time-of-day-section feels-like-time-of-day'>Feeling like 36<i className='wi wi-degrees hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature wind-time-of-day'><i className='wi wi-strong-wind hourly'/> 2.1 m/s <i className='wi wi-wind towards-336-deg hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature pressure-time-of-day'><i className='wi wi-barometer hourly'/> 1008 hPa</div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature humidity-time-of-day'>83 <i className='wi wi-humidity hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature visibility-time-of-day'><VisibilityRounded id='visibilityHourly'/> 1000 m</div>
+                <div className='hourly-grid-item day-grid'>{timeConvert(resultData.daily[0].dt, resultData.timezone).date.slice(0, -5)}</div>
+                <div className='hourly-grid-item hourly-meteo-info'>
+                    <div className='time-of-day-section sunrise'><i className='wi wi-sunrise hourly'/> {timeConvert(resultData.daily[0].sunrise, resultData.timezone).time}</div>
+                    {weatherIconHandler(resultData.daily[0].weather[0].id, resultData.daily[0].weather[0].icon, 'hourly')}
+                    <div className='time-of-day-section sunset'>{timeConvert(resultData.daily[0].sunset, resultData.timezone).time} <i className='wi wi-sunset hourly'/></div>
+                    <div className='time-of-day-section wind-time-of-day'><i className='wi wi-strong-wind hourly'/> {resultData.daily[0].wind_speed} m/s <i className='wi wi-wind towards-336-deg hourly'/></div>
+                    <div className='time-of-day-section pressure-time-of-day'><i className='wi wi-barometer hourly'/> {resultData.daily[0].pressure} hPa</div>
+                    <div className='time-of-day-section humidity-time-of-day'>{resultData.daily[0].humidity} <i className='wi wi-humidity hourly'/></div>
                 </div>
                 <div className='hourly-grid-item'>
-                    <div className='time-of-day-section time-of-day'>Утро</div>
-                    <div className='time-of-day-section picture-time-of-day'><i className='wi wi-day-sunny hourly'/></div>
-                    <div className='time-of-day-section temperature-time-of-day'>33<i className='wi wi-degrees hourly'/></div>
-                    <div className='time-of-day-section feels-like-time-of-day'>Feeling like 36<i className='wi wi-degrees hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature wind-time-of-day'><i className='wi wi-strong-wind hourly'/> 2.1 m/s <i className='wi wi-wind towards-336-deg hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature pressure-time-of-day'><i className='wi wi-barometer hourly'/> 1008 hPa</div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature humidity-time-of-day'>83 <i className='wi wi-humidity hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature visibility-time-of-day'><VisibilityRounded id='visibilityHourly'/> 1000 m</div>
+                    <div className='time-of-day-section time-of-day'>Night</div>
+                    <div className='time-of-day-section temperature-time-of-day'>{Math.round(resultData.daily[0].temp.night)}<i className='wi wi-degrees hourly'/></div>
+                    <div className='time-of-day-section feels-like-time-of-day'>Feels like {Math.round(resultData.daily[0].feels_like.night)}<i className='wi wi-degrees hourly'/></div>
                 </div>
                 <div className='hourly-grid-item'>
-                    <div className='time-of-day-section time-of-day'>День</div>
-                    <div className='time-of-day-section picture-time-of-day'><i className='wi wi-day-sunny hourly'/></div>
-                    <div className='time-of-day-section temperature-time-of-day'>33<i className='wi wi-degrees hourly'/></div>
-                    <div className='time-of-day-section feels-like-time-of-day'>Feeling like 36<i className='wi wi-degrees hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature wind-time-of-day'><i className='wi wi-strong-wind hourly'/> 2.1 m/s <i className='wi wi-wind towards-336-deg hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature pressure-time-of-day'><i className='wi wi-barometer hourly'/> 1008 hPa</div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature humidity-time-of-day'>83 <i className='wi wi-humidity hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature visibility-time-of-day'><VisibilityRounded id='visibilityHourly'/> 1000 m</div>
+                    <div className='time-of-day-section time-of-day'>Morning</div>
+                    <div className='time-of-day-section temperature-time-of-day'>{Math.round(resultData.daily[0].temp.morn)}<i className='wi wi-degrees hourly'/></div>
+                    <div className='time-of-day-section feels-like-time-of-day'>Feels like {Math.round(resultData.daily[0].feels_like.morn)}<i className='wi wi-degrees hourly'/></div>
                 </div>
                 <div className='hourly-grid-item'>
-                    <div className='time-of-day-section time-of-day'>Вечер</div>
-                    <div className='time-of-day-section picture-time-of-day'><i className='wi wi-day-sunny hourly'/></div>
-                    <div className='time-of-day-section temperature-time-of-day'>33<i className='wi wi-degrees hourly'/></div>
-                    <div className='time-of-day-section feels-like-time-of-day'>Feeling like 36<i className='wi wi-degrees hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature wind-time-of-day'><i className='wi wi-strong-wind hourly'/> 2.1 m/s <i className='wi wi-wind towards-336-deg hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature pressure-time-of-day'><i className='wi wi-barometer hourly'/> 1008 hPa</div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature humidity-time-of-day'>83 <i className='wi wi-humidity hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature visibility-time-of-day'><VisibilityRounded id='visibilityHourly'/> 1000 m</div>
+                    <div className='time-of-day-section time-of-day'>Day</div>
+                    <div className='time-of-day-section temperature-time-of-day'>{Math.round(resultData.daily[0].temp.day)}<i className='wi wi-degrees hourly'/></div>
+                    <div className='time-of-day-section feels-like-time-of-day'>Feels like {Math.round(resultData.daily[0].feels_like.day)}<i className='wi wi-degrees hourly'/></div>
+                </div>
+                <div className='hourly-grid-item'>
+                    <div className='time-of-day-section time-of-day'>Evening</div>
+                    <div className='time-of-day-section temperature-time-of-day'>{Math.round(resultData.daily[0].temp.eve)}<i className='wi wi-degrees hourly'/></div>
+                    <div className='time-of-day-section feels-like-time-of-day'>Feels like {Math.round(resultData.daily[0].feels_like.eve)}<i className='wi wi-degrees hourly'/></div>
                 </div>
             </div>
             <div className='hourly-weather-wrap-day-two'>
-                <div className='hourly-grid-item day-grid'>21 ноября</div>
-                <div className='hourly-grid-item'>
-                    <div className='time-of-day-section time-of-day'>Ночь</div>
-                    <div className='time-of-day-section picture-time-of-day'><i className='wi wi-day-sunny hourly'/></div>
-                    <div className='time-of-day-section temperature-time-of-day'>33<i className='wi wi-degrees hourly'/></div>
-                    <div className='time-of-day-section feels-like-time-of-day'>Feeling like 36<i className='wi wi-degrees hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature wind-time-of-day'><i className='wi wi-strong-wind hourly'/> 2.1 m/s <i className='wi wi-wind towards-336-deg hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature pressure-time-of-day'><i className='wi wi-barometer hourly'/> 1008 hPa</div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature humidity-time-of-day'>83 <i className='wi wi-humidity hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature visibility-time-of-day'><VisibilityRounded id='visibilityHourly'/> 1000 m</div>
+                <div className='hourly-grid-item day-grid'>{timeConvert(resultData.daily[1].dt, resultData.timezone).date.slice(0, -5)}</div>
+                <div className='hourly-grid-item hourly-meteo-info'>
+                    <div className='time-of-day-section sunrise'><i className='wi wi-sunrise hourly'/> {timeConvert(resultData.daily[1].sunrise, resultData.timezone).time}</div>
+                    {weatherIconHandler(resultData.daily[1].weather[0].id, resultData.daily[1].weather[0].icon, 'hourly')}
+                    <div className='time-of-day-section sunset'>{timeConvert(resultData.daily[1].sunset, resultData.timezone).time} <i className='wi wi-sunset hourly'/></div>
+                    <div className='time-of-day-section wind-time-of-day'><i className='wi wi-strong-wind hourly'/> {resultData.daily[1].wind_speed} m/s <i className='wi wi-wind towards-336-deg hourly'/></div>
+                    <div className='time-of-day-section pressure-time-of-day'><i className='wi wi-barometer hourly'/> {resultData.daily[1].pressure} hPa</div>
+                    <div className='time-of-day-section humidity-time-of-day'>{resultData.daily[1].humidity} <i className='wi wi-humidity hourly'/></div>
                 </div>
                 <div className='hourly-grid-item'>
-                    <div className='time-of-day-section time-of-day'>Утро</div>
-                    <div className='time-of-day-section picture-time-of-day'><i className='wi wi-day-sunny hourly'/></div>
-                    <div className='time-of-day-section temperature-time-of-day'>33<i className='wi wi-degrees hourly'/></div>
-                    <div className='time-of-day-section feels-like-time-of-day'>Feeling like 36<i className='wi wi-degrees hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature wind-time-of-day'><i className='wi wi-strong-wind hourly'/> 2.1 m/s <i className='wi wi-wind towards-336-deg hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature pressure-time-of-day'><i className='wi wi-barometer hourly'/> 1008 hPa</div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature humidity-time-of-day'>83 <i className='wi wi-humidity hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature visibility-time-of-day'><VisibilityRounded id='visibilityHourly'/> 1000 m</div>
+                    <div className='time-of-day-section time-of-day'>Night</div>
+                    <div className='time-of-day-section temperature-time-of-day'>{Math.round(resultData.daily[1].temp.night)}<i className='wi wi-degrees hourly'/></div>
+                    <div className='time-of-day-section feels-like-time-of-day'>Feels like {Math.round(resultData.daily[1].feels_like.night)}<i className='wi wi-degrees hourly'/></div>
                 </div>
                 <div className='hourly-grid-item'>
-                    <div className='time-of-day-section time-of-day'>День</div>
-                    <div className='time-of-day-section picture-time-of-day'><i className='wi wi-day-sunny hourly'/></div>
-                    <div className='time-of-day-section temperature-time-of-day'>33<i className='wi wi-degrees hourly'/></div>
-                    <div className='time-of-day-section feels-like-time-of-day'>Feeling like 36<i className='wi wi-degrees hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature wind-time-of-day'><i className='wi wi-strong-wind hourly'/> 2.1 m/s <i className='wi wi-wind towards-336-deg hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature pressure-time-of-day'><i className='wi wi-barometer hourly'/> 1008 hPa</div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature humidity-time-of-day'>83 <i className='wi wi-humidity hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature visibility-time-of-day'><VisibilityRounded id='visibilityHourly'/> 1000 m</div>
+                    <div className='time-of-day-section time-of-day'>Morning</div>
+                    <div className='time-of-day-section temperature-time-of-day'>{Math.round(resultData.daily[1].temp.morn)}<i className='wi wi-degrees hourly'/></div>
+                    <div className='time-of-day-section feels-like-time-of-day'>Feels like {Math.round(resultData.daily[1].feels_like.morn)}<i className='wi wi-degrees hourly'/></div>
                 </div>
                 <div className='hourly-grid-item'>
-                    <div className='time-of-day-section time-of-day'>Вечер</div>
-                     <div className='time-of-day-section picture-time-of-day'><i className='wi wi-day-sunny hourly'/></div>
-                    <div className='time-of-day-section temperature-time-of-day'>33<i className='wi wi-degrees hourly'/></div>
-                    <div className='time-of-day-section feels-like-time-of-day'>Feeling like 36<i className='wi wi-degrees hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature wind-time-of-day'><i className='wi wi-strong-wind hourly'/> 2.1 m/s <i className='wi wi-wind towards-336-deg hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature pressure-time-of-day'><i className='wi wi-barometer hourly'/> 1008 hPa</div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature humidity-time-of-day'>83 <i className='wi wi-humidity hourly'/></div>
-                    <div className='time-of-day-section time-of-day-section-after-temperature visibility-time-of-day'><VisibilityRounded id='visibilityHourly'/> 1000 m</div>
+                    <div className='time-of-day-section time-of-day'>Day</div>
+                    <div className='time-of-day-section temperature-time-of-day'>{Math.round(resultData.daily[1].temp.day)}<i className='wi wi-degrees hourly'/></div>
+                    <div className='time-of-day-section feels-like-time-of-day'>Feels like {Math.round(resultData.daily[1].feels_like.day)}<i className='wi wi-degrees hourly'/></div>
+                </div>
+                <div className='hourly-grid-item'>
+                    <div className='time-of-day-section time-of-day'>Evening</div>
+                    <div className='time-of-day-section temperature-time-of-day'>{Math.round(resultData.daily[1].temp.eve)}<i className='wi wi-degrees hourly'/></div>
+                    <div className='time-of-day-section feels-like-time-of-day'>Feels like {Math.round(resultData.daily[1].feels_like.eve)}<i className='wi wi-degrees hourly'/></div>
                 </div>
             </div>
         </div>

@@ -17,7 +17,7 @@ function timeConvert(unix_timestamp, timezone){
     console.log(date);
     console.log(date.toLocaleString('en-GB', {timeZone: timezone, weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric',  hour: '2-digit', minute: '2-digit'}));
     return {
-        date: date.toLocaleString('en-GB', {timeZone: timezone, weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric'}),
+        date: date.toLocaleString('en-GB', {timeZone: timezone, weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'}),
         time: date.toLocaleString('en-GB', {timeZone: timezone, hour: '2-digit', minute: '2-digit'})
     };
 }

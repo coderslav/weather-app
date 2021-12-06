@@ -104,8 +104,11 @@ function Search({ data, APIkey }) {
                             axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${response.data[0].lat}&lon=${response.data[0].lon}&exclude=minutely,hourly,daily&units=metric&appid=${APIkey}`)
                                 .then(response => setResultData(response.data)).catch(error => alert(error));
                         }else if(resultDataTime === 'For 2 days'){
-                            axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${response.data[0].lat}&lon=${response.data[0].lon}&exclude=minutely,current,daily&units=metric&appid=${APIkey}`)
-                                .then(response => setResultData(response.data)).catch(error => alert(error));
+                            axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${response.data[0].lat}&lon=${response.data[0].lon}&exclude=minutely,hourly,current&units=metric&appid=${APIkey}`)
+                                .then(response => {
+                                    response.data.hourly = 'Yes';
+                                    setResultData(response.data);
+                                }).catch(error => alert(error));
                         }else {
                             axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${response.data[0].lat}&lon=${response.data[0].lon}&exclude=minutely,hourly,current&units=metric&appid=${APIkey}`)
                                 .then(response => setResultData(response.data)).catch(error => alert(error));

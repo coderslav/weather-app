@@ -1,7 +1,7 @@
 .current-weather-wrap{
     display: grid;
     position: relative;
-    top: calc(50% - 15rem);
+    top: calc(50% - 17.5rem);
     width: max-content;
     margin: 0 auto;
     background-color: #33495f;
