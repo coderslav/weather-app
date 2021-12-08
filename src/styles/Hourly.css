@@ -1,7 +1,19 @@
+.hourly-close{
+    position: relative;
+    top: calc(50% - 24.5625rem);
+    width: max-content;
+    margin: 0 auto;
+    padding: 10px;
+    color: rgba(255, 255, 255, 0.75);
+}
+#closeBtnHourly{
+    font-size: 5rem;
+    cursor: pointer;
+}
 .hourly-weather-wrap{
     display: grid;
     position: relative;
-    top: calc(50% - 19.125rem);
+    top: calc(50% - 24.5625rem);
     width: max-content;
     margin: 0 auto;
     background-color: #33495f;

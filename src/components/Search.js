@@ -62,8 +62,6 @@ function Search({ data, APIkey }) {
                 return value.toLowerCase().replaceAll(' ', '') === searchWord.toLowerCase().replaceAll(' ', '');
             });
             if (match.length !== 0) {
-
-                console.log(match);
                 setFilteredData([]);
             } else {
                 setFilteredData(newFilter);
@@ -92,11 +90,9 @@ function Search({ data, APIkey }) {
             if (filter.length !== 0) {
                 if (radioErrorState === 'noChecked') {
                     setRadioErrorState('yes');
-                    console.log('Nice, but no Radio!');
                     return;
                 }
                 setWordEntered('');
-                console.log('Done!');
                 axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${filter[0]}&limit=1&appid=${APIkey}`)
                     .then(response => {
                         setResultCityInfo({city: response.data[0].name, country: response.data[0].country});
@@ -120,15 +116,12 @@ function Search({ data, APIkey }) {
                 if (radioErrorState === 'noChecked') {
                     setRadioErrorState('yes');
                 }
-                console.log('Nope :(');
-                console.log(filter);
             }
         }
     };
     const handleRadio = (event) => {
         setRadioErrorState('checked');
         setResultDataTime(event.target.value);
-        console.log(resultDataTime);
     };
 
     let searchBlock =(

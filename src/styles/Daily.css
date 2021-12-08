@@ -1,7 +1,19 @@
+.daily-close{
+    position: relative;
+    top: calc(50% - 23.4375rem);
+    width: max-content;
+    margin: 0 auto;
+    padding: 10px;
+    color: rgba(255, 255, 255, 0.75);
+}
+#closeBtnDaily{
+    font-size: 5rem;
+    cursor: pointer;
+}
 .daily-wrap{
     display: grid;
     position: relative;
-    top: calc(50% - 18rem);
+    top: calc(50% - 23.4375rem);
     width: max-content;
     margin: 0 auto;
     background-color: #33495f;

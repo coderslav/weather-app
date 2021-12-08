@@ -39,7 +39,6 @@ function timeDateHandler(unix_timestamp, timezone, componentName){
     }
 }
 function weatherIconHandler(id, dayTime, componentName){
-    console.log(componentName);
     if(id === 800){
         return dayTime.includes('d') ? <i className={'wi wi-day-sunny weather-icon' + ' ' + componentName}/> : <i className={'wi wi-night-clear weather-icon' + ' ' + componentName}/>;
     }
@@ -125,16 +124,16 @@ function weatherIconHandler(id, dayTime, componentName){
         return dayTime.includes('d') ? <i className={'wi wi-day-fog weather-icon' + ' ' + componentName}/> : <i className={'wi wi-night-fog weather-icon' + ' ' + componentName}/>;
     }
 }
+function reloadPage(){
+    window.location.reload();
+}
 
 
 function Result({ resultData, resultCityInfo }){
-    console.log(resultCityInfo);
-    console.log(resultData);
-    console.log(JSON.stringify(resultData, null, '\t'));
 
-    return resultData.current ? <Current resultData={resultData} resultCityInfo={resultCityInfo} timeDateHandler = {timeDateHandler} weatherIconHandler={weatherIconHandler}/>
-            : resultData.hourly ? <Hourly resultData={resultData} resultCityInfo={resultCityInfo} timeDateHandler = {timeDateHandler} weatherIconHandler={weatherIconHandler}/>
-            : <Daily resultData={resultData} resultCityInfo={resultCityInfo} timeDateHandler = {timeDateHandler} weatherIconHandler={weatherIconHandler}/>;
+    return resultData.current ? <Current resultData={resultData} resultCityInfo={resultCityInfo} timeDateHandler = {timeDateHandler} weatherIconHandler={weatherIconHandler} reloadPage={reloadPage}/>
+            : resultData.hourly ? <Hourly resultData={resultData} resultCityInfo={resultCityInfo} timeDateHandler = {timeDateHandler} weatherIconHandler={weatherIconHandler} reloadPage={reloadPage}/>
+            : <Daily resultData={resultData} resultCityInfo={resultCityInfo} timeDateHandler = {timeDateHandler} weatherIconHandler={weatherIconHandler} reloadPage={reloadPage}/>;
 }
 
 

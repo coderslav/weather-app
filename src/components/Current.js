@@ -4,16 +4,20 @@ import '@styles/weather-icons.css';
 import '@styles/weather-icons-wind.css';
 import PropTypes from 'prop-types';
 import {VisibilityRounded} from '@mui/icons-material';
+import CloseIcon from '@mui/icons-material/Close';
 
 Current.propTypes = {
     resultData: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     resultCityInfo: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     timeDateHandler: PropTypes.func,
-    weatherIconHandler: PropTypes.func
+    weatherIconHandler: PropTypes.func,
+    reloadPage: PropTypes.func
 };
 
-function Current({resultData, resultCityInfo, timeDateHandler, weatherIconHandler}) {
+function Current({resultData, resultCityInfo, timeDateHandler, weatherIconHandler, reloadPage}) {
     return (
+        <>
+            <div className='current-close'><CloseIcon id='closeBtnCurrent' onClick={reloadPage}/></div>
             <div className='current-weather-wrap'>
                 <div className='grid-item main'>
                     <div className='city-info'>{resultCityInfo.city}, {resultCityInfo.country}</div>
@@ -29,6 +33,7 @@ function Current({resultData, resultCityInfo, timeDateHandler, weatherIconHandle
                 <div className='grid-item right-side pressure'><i className='wi wi-barometer current'/> {resultData.current.pressure} hPa</div>
                 <div className='grid-item right-side visibility'><VisibilityRounded id='visibilityCurrent'/> {resultData.current.visibility} m</div>
             </div>
+        </>
     );
 }
 

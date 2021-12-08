@@ -1,7 +1,19 @@
+.current-close{
+    position: relative;
+    top: calc(50% - 22.9375rem);
+    width: max-content;
+    margin: 0 auto;
+    padding: 10px;
+    color: rgba(255, 255, 255, 0.75);
+}
+#closeBtnCurrent{
+    font-size: 5rem;
+    cursor: pointer;
+}
 .current-weather-wrap{
     display: grid;
     position: relative;
-    top: calc(50% - 17.5rem);
+    top: calc(50% - 22.9375rem);
     width: max-content;
     margin: 0 auto;
     background-color: #33495f;
@@ -18,7 +30,6 @@
     background-color: rgba(255, 255, 255, 0.75);
     color: #33495f;
 }
-
 .grid-item.main{
     grid-row: 1/7;
     text-align: center;
