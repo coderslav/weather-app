@@ -1,7 +1,7 @@
 .daily-wrap{
-    display: flex;
+    display: grid;
     position: relative;
-    top: calc(50% - 14.6875rem);
+    top: calc(50% - 18rem);
     width: max-content;
     margin: 0 auto;
     background-color: #33495f;
@@ -9,27 +9,31 @@
     text-align: center;
     gap: 1rem;
 }
-.daily-flex-item{
+.daily-grid-item{
     padding: 10px;
     border: 1px solid white;
     border-radius: 0.5rem;
     background-color: rgba(255, 255, 255, 0.75);
     color: #33495f;
 }
-.wi-sunrise.daily, .wi-sunset.daily{
-    margin: 0 0.5rem;
+.daily-grid-item.city-country-name{
+    grid-column: 1/8;
+    font-size: 3rem;
+}
+.sunrise-time-of-day, .sunset-time-of-day{
     font-size: 1rem;
+    margin: 0 0.5rem;
 }
 .daily-section{
     font-size: 1.5rem;
     word-break: break-all;
 }
-.wi.wi-day-sunny.daily{
+.weather-icon.daily{
     font-size: 5rem;
     margin: 2rem 0;
 }
 .daily-section.feels-like-daily{
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin-bottom: 2rem;
 }
 .daily-section.daily-section-after-temperature{
@@ -38,8 +42,4 @@
 }
 .wi.wi-wind.daily{
     font-size: 1.5rem;
-}
-#visibilityDaily{
-    font-size: 1.5rem;
-    vertical-align: middle;
 }

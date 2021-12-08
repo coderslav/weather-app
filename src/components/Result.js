@@ -10,16 +10,33 @@ Result.propTypes = {
     resultCityInfo: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 };
 
-function timeConvert(unix_timestamp, timezone){
-    console.log(unix_timestamp);
-    console.log(timezone);
+function timeDateHandler(unix_timestamp, timezone, componentName){
     let date = new Date(unix_timestamp * 1000);
-    console.log(date);
-    console.log(date.toLocaleString('en-GB', {timeZone: timezone, weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric',  hour: '2-digit', minute: '2-digit'}));
-    return {
-        date: date.toLocaleString('en-GB', {timeZone: timezone, weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'}),
+    let dateData = {
+        date: date.toLocaleString('en-GB', {timeZone: timezone, weekday: 'long', day: 'numeric', month: 'long'}),
         time: date.toLocaleString('en-GB', {timeZone: timezone, hour: '2-digit', minute: '2-digit'})
     };
+    if (componentName === 'Current'){
+        return dateData;
+    }
+    const miniWeekDaySet = {
+        Monday: 'MON',
+        Tuesday: 'TUE',
+        Wednesday: 'WED',
+        Thursday: 'THU',
+        Friday: 'FRI',
+        Saturday: 'SAT',
+        Sunday: 'SUN'
+    };
+    let dateList = dateData.date.split(' ');
+    if (componentName === 'Hourly'){
+        dateData.date = dateList[0] + ', ' + dateList[1] + ' ' + dateList[2];
+        return dateData;
+    }
+    if (componentName === 'Daily'){
+        dateData.date = [miniWeekDaySet[dateList[0]], dateList[1], dateList[2]];
+        return dateData;
+    }
 }
 function weatherIconHandler(id, dayTime, componentName){
     console.log(componentName);
@@ -115,9 +132,9 @@ function Result({ resultData, resultCityInfo }){
     console.log(resultData);
     console.log(JSON.stringify(resultData, null, '\t'));
 
-    return resultData.current ? <Current resultData={resultData} resultCityInfo={resultCityInfo} timeConvert = {timeConvert} weatherIconHandler={weatherIconHandler}/>
-            : resultData.hourly ? <Hourly resultData={resultData} resultCityInfo={resultCityInfo} timeConvert = {timeConvert} weatherIconHandler={weatherIconHandler}/>
-            : <Daily resultData={resultData} resultCityInfo={resultCityInfo} timeConvert = {timeConvert} weatherIconHandler={weatherIconHandler}/>;
+    return resultData.current ? <Current resultData={resultData} resultCityInfo={resultCityInfo} timeDateHandler = {timeDateHandler} weatherIconHandler={weatherIconHandler}/>
+            : resultData.hourly ? <Hourly resultData={resultData} resultCityInfo={resultCityInfo} timeDateHandler = {timeDateHandler} weatherIconHandler={weatherIconHandler}/>
+            : <Daily resultData={resultData} resultCityInfo={resultCityInfo} timeDateHandler = {timeDateHandler} weatherIconHandler={weatherIconHandler}/>;
 }
 
 
