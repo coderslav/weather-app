@@ -38,7 +38,7 @@ function timeDateHandler(unix_timestamp, timezone, componentName){
     }
     if (componentName === 'Daily'){
         if (dateList[0].includes(',')){
-            dateList[0] = dateList[0].replace(',', '')
+            dateList[0] = dateList[0].replace(',', '');
         }
         dateData.date = [miniWeekDaySet[dateList[0]], dateList[1], dateList[2]];
         return dateData;
