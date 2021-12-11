@@ -93,7 +93,7 @@ function Search({ data, APIkey }) {
                     return;
                 }
                 setWordEntered('');
-                axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${filter[0]}&limit=1&appid=${APIkey}`)
+                axios.get(`https://api.openweathermap.org/geo/1.0/direct?q=${filter[0]}&limit=1&appid=${APIkey}`)
                     .then(response => {
                         setResultCityInfo({city: response.data[0].name, country: response.data[0].country});
                         if (resultDataTime === 'Now'){
