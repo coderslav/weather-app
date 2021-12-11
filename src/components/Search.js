@@ -141,7 +141,7 @@ function Search({ data, APIkey }) {
                 </div>
                 {filteredData.length !== 0 && (
                     <div className='dataResult'>
-                        {filteredData.slice(0, 15).map((value, key) => {
+                        {filteredData.slice(0, 5).map((value, key) => {
                             return (
                                 <a className='dataItem' href={value} key={key} onClick={handleDataResultChoice} target='_blank' rel='noreferrer'>
                                     {value}

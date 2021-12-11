@@ -1,7 +1,7 @@
 .search {
     width: max-content;
     height: max-content;
-    margin-top: 15%;
+    margin-top: 30%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -107,4 +107,36 @@ a:hover {
 #nowRadioButtonError,
 #twoDaysRadioButtonError {
     color: #ff495f;
+}
+
+
+@media (min-width: 500px){
+    .search {
+        margin-top: 20%;
+    }
+}
+@media (max-width: 650px) and (min-height: 700px) {
+    .search {
+        margin-top: 50%;
+    }
+}
+@media (max-width: 768px) and (min-height: 1023px) {
+    .search {
+        margin-top: 40%;
+    }
+}
+@media (max-width: 768px) and (min-height: 1300px) {
+    .search {
+        margin-top: 60%;
+    }
+}
+@media (max-width: 438px) and (min-height: 1023px) {
+    .search {
+        margin-top: 80%;
+    }
+}
+@media (max-width: 375px) and (min-height: 1365px) {
+    .search {
+        margin-top: 90%;
+    }
 }

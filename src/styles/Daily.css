@@ -1,19 +1,17 @@
 .daily-close{
     position: relative;
-    top: calc(50% - 23.4375rem);
     width: max-content;
     margin: 0 auto;
-    padding: 10px;
+    padding: 0.625rem;
     color: rgba(255, 255, 255, 0.75);
 }
 #closeBtnDaily{
-    font-size: 5rem;
+    font-size: 2.5rem;
     cursor: pointer;
 }
 .daily-wrap{
     display: grid;
     position: relative;
-    top: calc(50% - 23.4375rem);
     width: max-content;
     margin: 0 auto;
     background-color: #33495f;
@@ -22,14 +20,13 @@
     gap: 1rem;
 }
 .daily-grid-item{
-    padding: 10px;
-    border: 1px solid white;
+    padding: 0.625rem;
+    border: 0.0625rem solid white;
     border-radius: 0.5rem;
     background-color: rgba(255, 255, 255, 0.75);
     color: #33495f;
 }
 .daily-grid-item.city-country-name{
-    grid-column: 1/8;
     font-size: 3rem;
 }
 .sunrise-time-of-day, .sunset-time-of-day{
@@ -54,4 +51,15 @@
 }
 .wi.wi-wind.daily{
     font-size: 1.5rem;
+}
+@media (min-width: 500px) {
+    .daily-close{
+        top: calc(50% - 23.4375rem);
+}
+    .daily-wrap{
+        top: calc(50% - 23.4375rem);
+}
+    .daily-grid-item.city-country-name{
+        grid-column: 1/8;
+    }
 }

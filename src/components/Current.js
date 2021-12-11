@@ -3,7 +3,6 @@ import '@styles/Current.css';
 import '@styles/weather-icons.css';
 import '@styles/weather-icons-wind.css';
 import PropTypes from 'prop-types';
-import {VisibilityRounded} from '@mui/icons-material';
 import CloseIcon from '@mui/icons-material/Close';
 
 Current.propTypes = {
@@ -31,7 +30,6 @@ function Current({resultData, resultCityInfo, timeDateHandler, weatherIconHandle
                 <div className='grid-item right-side humidity'>{resultData.current.humidity} <i className='wi wi-humidity current'/></div>
                 <div className='grid-item right-side wind'><i className='wi wi-strong-wind current'/> {resultData.current.wind_speed} m/s <i className='wi wi-wind towards-336-deg current'/></div>
                 <div className='grid-item right-side pressure'><i className='wi wi-barometer current'/> {resultData.current.pressure} hPa</div>
-                <div className='grid-item right-side visibility'><VisibilityRounded id='visibilityCurrent'/> {resultData.current.visibility} m</div>
             </div>
         </>
     );

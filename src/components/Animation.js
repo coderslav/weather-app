@@ -3,7 +3,7 @@ import '@styles/Animation.css';
 
 function Animation(){
     return(
-        <div className='wrapper'>
+        <div className='wrapper scale me please'>
             <div className='sun'/>
             <div className='cloud'>
                 <div className='cloud1'>

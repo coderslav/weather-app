@@ -1,5 +1,4 @@
 import React from 'react';
-import '@styles/Result.css';
 import PropTypes from 'prop-types';
 import Current from '@components/Current';
 import Hourly from '@components/Hourly';
