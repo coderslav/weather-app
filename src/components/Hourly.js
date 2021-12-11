@@ -25,7 +25,7 @@ function Hourly({ resultData, resultCityInfo, timeDateHandler, weatherIconHandle
                         <div className='time-of-day-section sunrise'><i className='wi wi-sunrise hourly'/> {timeDateHandler(resultData.daily[0].sunrise, resultData.timezone, 'Hourly').time}</div>
                         {weatherIconHandler(resultData.daily[0].weather[0].id, resultData.daily[0].weather[0].icon, 'hourly')}
                         <div className='time-of-day-section sunset'>{timeDateHandler(resultData.daily[0].sunset, resultData.timezone, 'Hourly').time} <i className='wi wi-sunset hourly'/></div>
-                        <div className='time-of-day-section wind-time-of-day'><i className='wi wi-strong-wind hourly'/> {resultData.daily[0].wind_speed} m/s <i className='wi wi-wind towards-336-deg hourly'/></div>
+                        <div className='time-of-day-section wind-time-of-day'><i className='wi wi-strong-wind hourly'/> {resultData.daily[0].wind_speed} m/s <i className={'wi wi-wind towards-' + resultData.daily[0].wind_deg + '-deg current'}/></div>
                         <div className='time-of-day-section pressure-time-of-day'><i className='wi wi-barometer hourly'/> {resultData.daily[0].pressure} hPa</div>
                         <div className='time-of-day-section humidity-time-of-day'>{resultData.daily[0].humidity} <i className='wi wi-humidity hourly'/></div>
                     </div>
@@ -56,7 +56,7 @@ function Hourly({ resultData, resultCityInfo, timeDateHandler, weatherIconHandle
                         <div className='time-of-day-section sunrise'><i className='wi wi-sunrise hourly'/> {timeDateHandler(resultData.daily[1].sunrise, resultData.timezone, 'Hourly').time}</div>
                         {weatherIconHandler(resultData.daily[1].weather[0].id, resultData.daily[1].weather[0].icon, 'hourly')}
                         <div className='time-of-day-section sunset'>{timeDateHandler(resultData.daily[1].sunset, resultData.timezone, 'Hourly').time} <i className='wi wi-sunset hourly'/></div>
-                        <div className='time-of-day-section wind-time-of-day'><i className='wi wi-strong-wind hourly'/> {resultData.daily[1].wind_speed} m/s <i className='wi wi-wind towards-336-deg hourly'/></div>
+                        <div className='time-of-day-section wind-time-of-day'><i className='wi wi-strong-wind hourly'/> {resultData.daily[1].wind_speed} m/s <i className={'wi wi-wind towards-' + resultData.daily[1].wind_deg + '-deg current'}/></div>
                         <div className='time-of-day-section pressure-time-of-day'><i className='wi wi-barometer hourly'/> {resultData.daily[1].pressure} hPa</div>
                         <div className='time-of-day-section humidity-time-of-day'>{resultData.daily[1].humidity} <i className='wi wi-humidity hourly'/></div>
                     </div>

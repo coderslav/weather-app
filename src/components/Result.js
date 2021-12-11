@@ -29,7 +29,11 @@ function timeDateHandler(unix_timestamp, timezone, componentName){
     };
     let dateList = dateData.date.split(' ');
     if (componentName === 'Hourly'){
-        dateData.date = dateList[0] + ', ' + dateList[1] + ' ' + dateList[2];
+        if (dateList[0].includes(',')){
+            dateData.date = dateList.join(' ');
+        } else {
+            dateData.date = dateList[0] + ', ' + dateList[1] + ' ' + dateList[2];
+        }
         return dateData;
     }
     if (componentName === 'Daily'){

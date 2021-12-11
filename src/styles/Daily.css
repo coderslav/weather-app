@@ -6,13 +6,14 @@
     color: rgba(255, 255, 255, 0.75);
 }
 #closeBtnDaily{
-    font-size: 2.5rem;
+    font-size: 3.5rem;
+    margin: 1rem;
     cursor: pointer;
 }
 .daily-wrap{
     display: grid;
     position: relative;
-    width: max-content;
+    width: 75vw;
     margin: 0 auto;
     background-color: #33495f;
     align-content: center;
@@ -58,6 +59,7 @@
 }
     .daily-wrap{
         top: calc(50% - 23.4375rem);
+        width: max-content;
 }
     .daily-grid-item.city-country-name{
         grid-column: 1/8;

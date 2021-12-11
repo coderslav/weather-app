@@ -28,7 +28,7 @@ function Current({resultData, resultCityInfo, timeDateHandler, weatherIconHandle
                 <div className='grid-item right-side sunrise'><i className='wi wi-sunrise current'/> {timeDateHandler(resultData.current.sunrise, resultData.timezone, 'Current').time}</div>
                 <div className='grid-item right-side sunset'><i className='wi wi-sunset current'/> {timeDateHandler(resultData.current.sunset, resultData.timezone, 'Current').time}</div>
                 <div className='grid-item right-side humidity'>{resultData.current.humidity} <i className='wi wi-humidity current'/></div>
-                <div className='grid-item right-side wind'><i className='wi wi-strong-wind current'/> {resultData.current.wind_speed} m/s <i className='wi wi-wind towards-336-deg current'/></div>
+                <div className='grid-item right-side wind'><i className='wi wi-strong-wind current'/> {resultData.current.wind_speed} m/s <i className={'wi wi-wind towards-' + resultData.current.wind_deg + '-deg current'}/></div>
                 <div className='grid-item right-side pressure'><i className='wi wi-barometer current'/> {resultData.current.pressure} hPa</div>
             </div>
         </>
