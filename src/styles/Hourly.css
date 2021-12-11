@@ -1,7 +1,7 @@
 .hourly-close{
     position: relative;
     width: max-content;
-    top: calc(50% - 24.5625rem);
+    top: calc(20% - 24.5625rem);
     margin: 0 auto;
     padding: 0.625rem;
     color: rgba(255, 255, 255, 0.75);
@@ -15,7 +15,7 @@
     display: grid;
     position: relative;
     width: max-content;
-    top: calc(50% - 24.5625rem);
+    top: calc(20% - 24.5625rem);
     margin: 0 auto;
     background-color: #33495f;
     align-content: center;
@@ -73,7 +73,11 @@
     font-size: 1.5rem;
 }
 @media (min-width: 500px) {
+    .hourly-close{
+        top: calc(50% - 24.5625rem);
+    }
     .hourly-weather-wrap{
+        top: calc(50% - 24.5625rem);
         grid-template-columns: 1fr 1fr;
         grid-template-rows: unset;
     }
