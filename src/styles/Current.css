@@ -1,7 +1,6 @@
 .current-close{
     position: relative;
     width: max-content;
-    top: calc(45% - 22.9375rem);
     margin: 0 auto;
     padding: 0.625rem;
     color: rgba(255, 255, 255, 0.75);
@@ -15,7 +14,6 @@
     display: grid;
     position: relative;
     width: max-content;
-    top: calc(45% - 22.9375rem);
     margin: 0 auto;
     background-color: #33495f;
     grid-template-columns: 1fr 1fr;

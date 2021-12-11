@@ -1,7 +1,6 @@
 .hourly-close{
     position: relative;
     width: max-content;
-    top: calc(45% - 24.5625rem);
     margin: 0 auto;
     padding: 0.625rem;
     color: rgba(255, 255, 255, 0.75);
@@ -15,7 +14,6 @@
     display: grid;
     position: relative;
     width: max-content;
-    top: calc(45% - 24.5625rem);
     margin: 0 auto;
     background-color: #33495f;
     align-content: center;
