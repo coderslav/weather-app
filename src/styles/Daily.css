@@ -1,5 +1,4 @@
 .daily-close{
-    position: relative;
     width: max-content;
     margin: 0 auto;
     padding: 0.625rem;
@@ -54,11 +53,7 @@
     font-size: 1.5rem;
 }
 @media (min-width: 500px) {
-    .daily-close{
-        top: calc(50% - 23.4375rem);
-}
     .daily-wrap{
-        top: calc(50% - 23.4375rem);
         width: max-content;
 }
     .daily-grid-item.city-country-name{

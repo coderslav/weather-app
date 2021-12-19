@@ -17,6 +17,12 @@ body{
 .scale.me.please{
     transform: scale(0.6);
 }
+.total-wrap-flex{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
 @media (min-width: 400px) {
     html{
         font-size: 10px;

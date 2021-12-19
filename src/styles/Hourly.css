@@ -1,5 +1,4 @@
 .hourly-close{
-    position: relative;
     width: max-content;
     margin: 0 auto;
     padding: 0.625rem;
@@ -71,11 +70,7 @@
     font-size: 1.5rem;
 }
 @media (min-width: 500px) {
-    .hourly-close{
-        top: calc(50% - 24.5625rem);
-    }
     .hourly-weather-wrap{
-        top: calc(50% - 24.5625rem);
         grid-template-columns: 1fr 1fr;
         grid-template-rows: unset;
     }

@@ -1,5 +1,4 @@
 .current-close{
-    position: relative;
     width: max-content;
     margin: 0 auto;
     padding: 0.625rem;
@@ -17,7 +16,7 @@
     margin: 0 auto;
     background-color: #33495f;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(7, minmax(5rem, auto));
+    grid-template-rows: repeat(4, minmax(5rem, auto));
     grid-gap: 1rem;
     align-items: center;
 }
@@ -63,13 +62,9 @@ span{
 }
 
 @media (min-width: 500px) {
-    .current-close{
-        top: calc(50% - 22.9375rem);
-    }
     .current-weather-wrap{
-        top: calc(50% - 22.9375rem);
         grid-template-columns: 2fr 1fr;
-        grid-template-rows: repeat(6, minmax(5rem, auto));
+        grid-template-rows: repeat(5, minmax(5rem, auto));
     }
     .grid-item.main{
         grid-row: 1/6;
